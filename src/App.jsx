@@ -2,14 +2,19 @@ import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PageWrapper = ({ children }) => (
-  <div className="min-h-screen w-full bg-gradient-to-b from-white to-zinc-50 text-zinc-900 flex items-center justify-center p-4">
-    <div className="w-full max-w-3xl">
+  <div className="min-h-screen  w-full flex items-center justify-center p-4 relative overflow-hidden">
+    {/* Pulsating background */}
+    <div className="absolute inset-0 bg-gradient-to-br from-pink-600 via-red-300 to-pink-400 opacity-90 animate-[pulse_2s_ease-in-out_infinite]"></div>
+
+    {/* Content */}
+    <div className="relative w-full mt-[30%] max-w-3xl">
       <div className="bg-white/80 backdrop-blur shadow-xl rounded-2xl border border-zinc-200 p-6 md:p-8">
         {children}
       </div>
     </div>
   </div>
 );
+
 
 const Nav = ({ current, total, onPrev, onNext }) => (
   <div className="mt-6 flex items-center justify-between gap-3">
@@ -30,6 +35,7 @@ const Nav = ({ current, total, onPrev, onNext }) => (
     </button>
   </div>
 );
+
 
 const Section = ({ title, subtitle, children }) => (
   <div>
@@ -63,45 +69,58 @@ const pages = [
     content: (
       <>
         <p>
-          Yeh page maine sirf tere liye banaya hai. Mere words kabhi-kabhi chat me bigad jate hain, isliye maine socha ki ek chhota sa digital letter likhu—clear, honest aur bina pressure ke.
+          Yeh page maine sirf tumhare liye banaya hai. Mere words kabhi-kabhi chat me bigad jate hain, isliye maine socha ki ek chhota sa digital letter likhu—clear, honest aur pura truth mummy ki kasam.
+          PLS Pura dekhna....
         </p>
       </>
     )
   },
   {
-    key: "sorry",
-    title: "3 Things I Need to Say Clearly",
-    content: (
-      <>
-        <ul className="list-decimal pl-6 space-y-4 text-zinc-700">
-          <li>
-            <span className="font-medium">I’m sorry.</span> Darr ki wajah se maine fake ID use ki. Tujhe hurt karna kabhi intention nahi tha.
-          </li>
-          <li>
-            <span className="font-medium">I miss the real you.</span> Tere awws, explanations, aur jo emotions tu share karti thi—unhe khud se door kar diya maine apne jhooth se. Aur mujhe sabse zyada yeh cheez khati hai.
-            <Divider />
-            <AudioPlayer src="/audio/aww.mp3" label="Her cute 'aww' I miss 💛" />
-            <AudioPlayer src="/audio/explanation.mp3" label="Her sweet explanations I regret killing with lies" />
-          </li>
-          <li>
-            <span className="font-medium">I promise honesty & respect.</span> Ab koi mask nahi, bas real me jo hu wahi. Aur agar tujhe space chahiye ho toh main hamesha respect karunga.
-          </li>
-        </ul>
-      </>
-    )
-  },
+  key: "sorry",
+  title: "3 Things I Need to Say Clearly",
+  content: (
+    <ul className="list-decimal pl-5 space-y-3 md:space-y-5 text-zinc-700 text-sm md:text-base leading-snug md:leading-relaxed">
+      <li>
+        <span className="font-medium">I’m sorry.&nbsp;</span>  
+         Maine fake ID use ki. Darr tha mujhe kii tumne face se tou frndship nii kii but i was wrong. You were pure hearted, Tume hurt karna kabhi intention nahi tha.
+      </li>
+
+      <li>
+        <span className="font-medium">BCZ of me I miss the real you.</span>  
+        Tumhare awws, explanations, aur jo emotions tum share karti thi—unhe khud se door kar diya maine apne jhooth se.  
+        <Divider />
+        <AudioPlayer src="/aww.mp3" label="Your cute 'aww' 💛" />
+        <AudioPlayer src="/explanation.mp3" label="Your sweet explanations 🎧" />
+      </li>
+
+      <li>
+        <span className="font-medium">I promise honesty & respectfully.</span>  
+        Vo bohot badi glti thi maine tume imp nhi smjha btana m chtya tha kuki, bas real me jo hu wahi hu ab.
+      </li>
+    </ul>
+  )
+}
+,
   {
     key: "note",
-    title: "A small note for you ✍️",
+    title: "A small note for you ✍️ pls pura padhna ",
     content: (
       <>
         <p>
-          Tu “failed as a friend” nahi hai. Galti meri thi. Jo bhi confusion hua, woh mere fear ki wajah se hua. Teri kindness ke liye genuinely thankful hoon.
+          Tum “failed as a friend” nahi ho naa kbhi hogi . Galti meri thi. Jo bhi confusion hua, woh mere fear ki wajah se hua. Tumhari kindness ke liye genuinely thankful hoon.
         </p>
+        <p>
+And haan tum apne dosto ko btaugi u will share it ik. aur vo seedha khenge block him ik. tumhe aur close krenege vo as a frnd ya jo bhi tumhara h but i dont think like that
+</p>
         <Card>
           <p className="italic">
-            "Agar kabhi hum dobara start karein, to iss baar bina mask ke. Aur agar na bhi karein, to bhi tera respect hamesha rahega."
+            "Agar iske baad tum mujhe maaf kr skti ho atleast one time. agar na bhi karna chaho baat , tou bas sad mat hona meri wajah se."
           </p>
+        </Card>
+        <Card>
+          <p className="italic">
+           and agr tum abhi bhi dost manti ho tou bas ek voice note mei mujhe full gali aur feelings ke sath reply krna aur nhi krna chahti tou then u have ur frnds the best one kick me out i dont want u to cry now...
+           </p>
         </Card>
       </>
     )
@@ -118,9 +137,17 @@ export default function SonamPage() {
   const current = useMemo(() => pages[i], [i]);
 
   return (
+    <div>
+       <img
+      src="/labubu.gif"
+      alt="Animated background"
+      className="absolute inset-0 w-full object-cover"
+    />
     <PageWrapper>
+      
       <AnimatePresence mode="wait">
         <motion.div
+      
           key={current.key}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -131,22 +158,110 @@ export default function SonamPage() {
             {current.content}
           </Section>
           <Nav current={i} total={total} onPrev={goPrev} onNext={goNext} />
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => { try { window.print(); } catch(e) {} }}
-              className="px-4 py-2 rounded-xl border border-zinc-300 hover:bg-zinc-50 transition"
-            >
-              Print / Save as PDF
-            </button>
-            <a
-              href={typeof window !== 'undefined' ? window.location.href : '#'}
-              className="px-4 py-2 rounded-xl border border-zinc-300 hover:bg-zinc-50 transition"
-            >
-              Share Link
-            </a>
-          </div>
+         
         </motion.div>
+       
       </AnimatePresence>
     </PageWrapper>
+    </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
