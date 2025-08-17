@@ -1,0 +1,9 @@
+.sexs {
+  height: auto; /* default for mobile/tablet */
+}
+
+@media (min-width: 800px) {
+  .sexs {
+    height: 100%; /* desktop */
+  }
+}

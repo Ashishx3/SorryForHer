@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import "./new.css"
 
 const PageWrapper = ({ children }) => (
   <div className="min-h-screen  w-full flex items-center justify-center p-4 relative overflow-hidden">
@@ -141,7 +142,7 @@ export default function SonamPage() {
        <img
       src="/labubu.gif"
       alt="Animated background"
-      className="absolute inset-0 w-full object-cover"
+      className="absolute sexs inset-0 w-full object-cover"
     />
     <PageWrapper>
       
